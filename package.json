@@ -9,7 +9,10 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "vinext start",
-    "deploy:cloudflare": "npm run build && wrangler deploy --config dist/server/wrangler.json",
+    "typecheck": "tsc --noEmit",
+    "deploy": "wrangler deploy --config dist/server/wrangler.json",
+    "deploy:cloudflare": "npm run build && npm run deploy",
+    "deploy:dry-run": "npm run build && npm run deploy -- --dry-run",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate"
@@ -21,6 +24,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.37.1",
+    "@cloudflare/workers-types": "4.20260515.1",
     "@eslint/js": "9.39.4",
     "@next/eslint-plugin-next": "16.2.6",
     "@tailwindcss/postcss": "4.2.1",
@@ -30,6 +34,7 @@
     "@vitejs/plugin-react": "6.0.2",
     "@vitejs/plugin-rsc": "0.5.26",
     "drizzle-kit": "0.31.10",
+    "esbuild": "0.27.3",
     "eslint": "9.39.4",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.5",

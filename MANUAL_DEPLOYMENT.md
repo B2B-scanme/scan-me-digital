@@ -28,6 +28,19 @@ generated Worker name is `scan-me-digital`.
 Wrangler prints the owner-controlled `workers.dev` URL when deployment
 finishes. Re-run the last command whenever you want to publish local changes.
 
+## Cloudflare Git integration
+
+Use these settings under **Settings > Build** for the production branch:
+
+- Build command: `npm run build`
+- Deploy command: `npm run deploy`
+- Root directory: `/`
+
+The build creates `dist/server/wrangler.json`; the deploy script explicitly
+uses that generated Worker configuration. After changing dependencies, clear
+Cloudflare's build cache before retrying so a stale native package cannot be
+mixed with the JavaScript package from the current lockfile.
+
 ## Deploy manually from GitHub
 
 The repository includes a workflow named **Deploy Scan Me to Cloudflare**. It

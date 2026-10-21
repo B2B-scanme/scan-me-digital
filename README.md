@@ -17,7 +17,9 @@ npm run dev
 
 ```bash
 npm run build
+npm run typecheck
 npm test
+npm run deploy -- --dry-run
 ```
 
 ## Owner-controlled deployment
