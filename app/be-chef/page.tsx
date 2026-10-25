@@ -1,6 +1,12 @@
+"use client";
+
+import type { MouseEvent as ReactMouseEvent } from "react";
 import styles from "./page.module.css";
 
+const instagramUsername = "be.chef.ma";
 const instagramUrl = "https://www.instagram.com/be.chef.ma/";
+const instagramAppUrl = `instagram://user?username=${instagramUsername}`;
+const instagramAndroidUrl = `intent://instagram.com/_u/${instagramUsername}/#Intent;scheme=https;package=com.instagram.android;S.browser_fallback_url=${encodeURIComponent(instagramUrl)};end`;
 const mapsUrl =
   "https://www.google.com/maps/place/Be+Chef/data=!4m2!3m1!1s0x0:0xa4c42f5e1ab1c326?sa=X&ved=1t:2428&ictx=111";
 const whatsappUrl = "https://api.whatsapp.com/send/?phone=212670239965";
@@ -50,6 +56,25 @@ function ArrowIcon() {
 }
 
 export default function BeChefPage() {
+  const openInstagram = (event: ReactMouseEvent<HTMLAnchorElement>) => {
+    const userAgent = navigator.userAgent;
+
+    if (/Android/i.test(userAgent)) {
+      event.preventDefault();
+      window.location.href = instagramAndroidUrl;
+      return;
+    }
+
+    if (/iPhone|iPad|iPod/i.test(userAgent)) {
+      event.preventDefault();
+      window.location.href = instagramAppUrl;
+
+      window.setTimeout(() => {
+        if (!document.hidden) window.location.href = instagramUrl;
+      }, 1100);
+    }
+  };
+
   return (
     <main className={styles.page}>
       <div className={styles.ambient} aria-hidden="true">
@@ -86,7 +111,12 @@ export default function BeChefPage() {
       </section>
 
       <nav className={styles.actions} aria-label="Liens Be Chef">
-        <a href={instagramUrl} target="_blank" rel="noreferrer">
+        <a
+          href={instagramUrl}
+          onClick={openInstagram}
+          target="_blank"
+          rel="noreferrer"
+        >
           <span className={styles.actionIcon}><InstagramIcon /></span>
           <span className={styles.actionCopy}>
             <small>DÉCOUVRIR</small>
