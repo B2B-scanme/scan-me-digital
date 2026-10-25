@@ -20,6 +20,10 @@ const instagramAndroidUrl =
 const mapsUrl =
   "https://www.google.com/maps/place/Be+Chef/data=!4m2!3m1!1s0x0:0xa4c42f5e1ab1c326?sa=X&ved=1t:2428&ictx=111";
 
+// Google Reviews
+// Replace this with the direct Google review link when available.
+const googleReviewsUrl = mapsUrl;
+
 // WhatsApp
 const whatsappUrl =
   "https://api.whatsapp.com/send/?phone=212670239965";
@@ -28,13 +32,7 @@ const whatsappUrl =
 function InstagramIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect
-        x="3"
-        y="3"
-        width="18"
-        height="18"
-        rx="5"
-      />
+      <rect x="3" y="3" width="18" height="18" rx="5" />
       <circle cx="12" cy="12" r="4.2" />
       <circle
         className={styles.iconFill}
@@ -69,7 +67,7 @@ function StarIcon() {
 function WhatsAppIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.5L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16.2-4.1Z" />
+      <path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.5L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16 0Z" />
       <path d="M8.1 7.5c.2-.5.4-.5.8-.5h.4c.1 0 .3 0 .4.4l.7 1.8c.1.3.1.5-.1.7l-.5.7c-.2.2-.3.4-.1.7.6 1.2 1.5 2.1 2.7 2.7.3.1.5.1.7-.2l.8-1c.2-.2.4-.3.7-.2l1.8.9c.3.1.4.3.4.5 0 .5-.2 1.5-.8 2-.6.5-1.3.8-2.2.6-1.2-.2-2.8-.8-4.4-2.2-1.3-1.2-2.5-2.9-2.8-4.3-.4-1.4.2-2.2.6-2.6.3-.3.6-.4.9-.4Z" />
     </svg>
   );
@@ -86,30 +84,22 @@ function ArrowIcon() {
 
 // Main Page
 export default function BeChefPage() {
-
-  // Open Instagram App
   const openInstagram = (
     event: ReactMouseEvent<HTMLAnchorElement>
   ) => {
     const userAgent = navigator.userAgent;
 
-    // Android
     if (/Android/i.test(userAgent)) {
       event.preventDefault();
-
       window.location.href = instagramAndroidUrl;
       return;
     }
 
-    // iPhone / iPad
     if (/iPhone|iPad|iPod/i.test(userAgent)) {
       event.preventDefault();
-
       window.location.href = instagramAppUrl;
       return;
     }
-
-    // Desktop uses the normal link
   };
 
   return (
@@ -128,7 +118,7 @@ export default function BeChefPage() {
       {/* Header */}
       <header className={styles.header}>
         <p className={styles.location}>
-          Kenitra · MAROC
+          KÉNITRA · MAROC
         </p>
 
         <p className={styles.restaurant}>
@@ -156,17 +146,17 @@ export default function BeChefPage() {
 
         <div className={styles.copy}>
           <p className={styles.eyebrow}>
-            BIENVENUE CHEZ
+            BIENVENUE CHEZ BE CHEF
           </p>
 
           <h1 id="be-chef-title">
-            Le goût qui vous
-            <span>rassemble.</span>
+            Le plaisir de bien
+            <span>manger.</span>
           </h1>
 
           <p className={styles.tagline}>
-            Une cuisine généreuse,
-            préparée avec passion.
+            Vous avez aimé votre expérience ?
+            Partagez-la avec nous !
           </p>
         </div>
       </section>
@@ -176,6 +166,27 @@ export default function BeChefPage() {
         className={styles.actions}
         aria-label="Liens Be Chef"
       >
+
+        {/* Google Reviews - Main Button */}
+        <a
+          className={styles.primary}
+          href={googleReviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className={styles.actionIcon}>
+            <StarIcon />
+          </span>
+
+          <span className={styles.actionCopy}>
+            <small>PARTAGEZ VOTRE EXPÉRIENCE</small>
+            Avis Google
+          </span>
+
+          <span className={styles.arrow}>
+            <ArrowIcon />
+          </span>
+        </a>
 
         {/* Instagram */}
         <a
@@ -188,7 +199,7 @@ export default function BeChefPage() {
           </span>
 
           <span className={styles.actionCopy}>
-            <small>DÉCOUVRIR</small>
+            <small>SUIVEZ NOS GOURMANDISES</small>
             Instagram
           </span>
 
@@ -208,28 +219,8 @@ export default function BeChefPage() {
           </span>
 
           <span className={styles.actionCopy}>
-            <small>NOUS TROUVER</small>
+            <small>RETROUVEZ-NOUS</small>
             Itinéraire
-          </span>
-
-          <span className={styles.arrow}>
-            <ArrowIcon />
-          </span>
-        </a>
-
-        {/* Google Reviews */}
-        <a
-          href={mapsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span className={styles.actionIcon}>
-            <StarIcon />
-          </span>
-
-          <span className={styles.actionCopy}>
-            <small>VOTRE EXPÉRIENCE</small>
-            Avis Google
           </span>
 
           <span className={styles.arrow}>
@@ -239,7 +230,6 @@ export default function BeChefPage() {
 
         {/* WhatsApp */}
         <a
-          className={styles.primary}
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
@@ -249,7 +239,7 @@ export default function BeChefPage() {
           </span>
 
           <span className={styles.actionCopy}>
-            <small>NOUS ÉCRIRE</small>
+            <small>CONTACTEZ-NOUS</small>
             WhatsApp
           </span>
 
