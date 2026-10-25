@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Be Chef Restaurant | Marrakech",
+  title: "Be Chef Restaurant | Kenitra",
   description:
     "Retrouvez Be Chef sur Instagram, WhatsApp et Google Maps.",
   openGraph: {

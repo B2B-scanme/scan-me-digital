@@ -1,26 +1,52 @@
+
 "use client";
 
 import type { MouseEvent as ReactMouseEvent } from "react";
 import styles from "./page.module.css";
 
+// Instagram
 const instagramUsername = "be.chef.ma";
-const instagramUrl = "https://www.instagram.com/be.chef.ma/";
-const instagramAppUrl = `instagram://user?username=${instagramUsername}`;
-const instagramAndroidUrl = `intent://instagram.com/_u/${instagramUsername}/#Intent;scheme=https;package=com.instagram.android;S.browser_fallback_url=${encodeURIComponent(instagramUrl)};end`;
+
+const instagramUrl =
+  `https://www.instagram.com/${instagramUsername}/`;
+
+const instagramAppUrl =
+  `instagram://user?username=${instagramUsername}`;
+
+const instagramAndroidUrl =
+  `intent://instagram.com/_u/${instagramUsername}/#Intent;scheme=https;package=com.instagram.android;S.browser_fallback_url=${encodeURIComponent(instagramUrl)};end`;
+
+// Google Maps
 const mapsUrl =
   "https://www.google.com/maps/place/Be+Chef/data=!4m2!3m1!1s0x0:0xa4c42f5e1ab1c326?sa=X&ved=1t:2428&ictx=111";
-const whatsappUrl = "https://api.whatsapp.com/send/?phone=212670239965";
 
+// WhatsApp
+const whatsappUrl =
+  "https://api.whatsapp.com/send/?phone=212670239965";
+
+// Instagram Icon
 function InstagramIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <rect
+        x="3"
+        y="3"
+        width="18"
+        height="18"
+        rx="5"
+      />
       <circle cx="12" cy="12" r="4.2" />
-      <circle className={styles.iconFill} cx="17.4" cy="6.7" r="1.1" />
+      <circle
+        className={styles.iconFill}
+        cx="17.4"
+        cy="6.7"
+        r="1.1"
+      />
     </svg>
   );
 }
 
+// Location Icon
 function LocationIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -30,6 +56,7 @@ function LocationIcon() {
   );
 }
 
+// Star Icon
 function StarIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -38,6 +65,7 @@ function StarIcon() {
   );
 }
 
+// WhatsApp Icon
 function WhatsAppIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -47,6 +75,7 @@ function WhatsAppIcon() {
   );
 }
 
+// Arrow Icon
 function ArrowIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -55,42 +84,69 @@ function ArrowIcon() {
   );
 }
 
+// Main Page
 export default function BeChefPage() {
-  const openInstagram = (event: ReactMouseEvent<HTMLAnchorElement>) => {
+
+  // Open Instagram App
+  const openInstagram = (
+    event: ReactMouseEvent<HTMLAnchorElement>
+  ) => {
     const userAgent = navigator.userAgent;
 
+    // Android
     if (/Android/i.test(userAgent)) {
       event.preventDefault();
+
       window.location.href = instagramAndroidUrl;
       return;
     }
 
+    // iPhone / iPad
     if (/iPhone|iPad|iPod/i.test(userAgent)) {
       event.preventDefault();
-      window.location.href = instagramAppUrl;
 
-      window.setTimeout(() => {
-        if (!document.hidden) window.location.href = instagramUrl;
-      }, 1100);
+      window.location.href = instagramAppUrl;
+      return;
     }
+
+    // Desktop uses the normal link
   };
 
   return (
     <main className={styles.page}>
-      <div className={styles.ambient} aria-hidden="true">
+
+      {/* Background */}
+      <div
+        className={styles.ambient}
+        aria-hidden="true"
+      >
         <span />
         <span />
         <span />
       </div>
 
+      {/* Header */}
       <header className={styles.header}>
-        <p className={styles.location}>MARRAKECH · MAROC</p>
-        <p className={styles.restaurant}>RESTAURANT</p>
+        <p className={styles.location}>
+          MARRAKECH · MAROC
+        </p>
+
+        <p className={styles.restaurant}>
+          RESTAURANT
+        </p>
       </header>
 
-      <section className={styles.hero} aria-labelledby="be-chef-title">
+      {/* Hero */}
+      <section
+        className={styles.hero}
+        aria-labelledby="be-chef-title"
+      >
         <div className={styles.logoFrame}>
-          <div className={styles.logoGlow} aria-hidden="true" />
+          <div
+            className={styles.logoGlow}
+            aria-hidden="true"
+          />
+
           <img
             className={styles.logo}
             src="/client-bechef.png"
@@ -99,70 +155,122 @@ export default function BeChefPage() {
         </div>
 
         <div className={styles.copy}>
-          <p className={styles.eyebrow}>BIENVENUE CHEZ</p>
+          <p className={styles.eyebrow}>
+            BIENVENUE CHEZ
+          </p>
+
           <h1 id="be-chef-title">
             Le goût qui vous
             <span>rassemble.</span>
           </h1>
+
           <p className={styles.tagline}>
-            Une cuisine généreuse, préparée avec passion.
+            Une cuisine généreuse,
+            préparée avec passion.
           </p>
         </div>
       </section>
 
-      <nav className={styles.actions} aria-label="Liens Be Chef">
+      {/* Action Buttons */}
+      <nav
+        className={styles.actions}
+        aria-label="Liens Be Chef"
+      >
+
+        {/* Instagram */}
         <a
           href={instagramUrl}
           onClick={openInstagram}
-          target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
-          <span className={styles.actionIcon}><InstagramIcon /></span>
+          <span className={styles.actionIcon}>
+            <InstagramIcon />
+          </span>
+
           <span className={styles.actionCopy}>
             <small>DÉCOUVRIR</small>
             Instagram
           </span>
-          <span className={styles.arrow}><ArrowIcon /></span>
+
+          <span className={styles.arrow}>
+            <ArrowIcon />
+          </span>
         </a>
 
-        <a href={mapsUrl} target="_blank" rel="noreferrer">
-          <span className={styles.actionIcon}><LocationIcon /></span>
+        {/* Google Maps */}
+        <a
+          href={mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className={styles.actionIcon}>
+            <LocationIcon />
+          </span>
+
           <span className={styles.actionCopy}>
             <small>NOUS TROUVER</small>
             Itinéraire
           </span>
-          <span className={styles.arrow}><ArrowIcon /></span>
+
+          <span className={styles.arrow}>
+            <ArrowIcon />
+          </span>
         </a>
 
-        <a href={mapsUrl} target="_blank" rel="noreferrer">
-          <span className={styles.actionIcon}><StarIcon /></span>
+        {/* Google Reviews */}
+        <a
+          href={mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className={styles.actionIcon}>
+            <StarIcon />
+          </span>
+
           <span className={styles.actionCopy}>
             <small>VOTRE EXPÉRIENCE</small>
             Avis Google
           </span>
-          <span className={styles.arrow}><ArrowIcon /></span>
+
+          <span className={styles.arrow}>
+            <ArrowIcon />
+          </span>
         </a>
 
+        {/* WhatsApp */}
         <a
           className={styles.primary}
           href={whatsappUrl}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
-          <span className={styles.actionIcon}><WhatsAppIcon /></span>
+          <span className={styles.actionIcon}>
+            <WhatsAppIcon />
+          </span>
+
           <span className={styles.actionCopy}>
             <small>NOUS ÉCRIRE</small>
             WhatsApp
           </span>
-          <span className={styles.arrow}><ArrowIcon /></span>
+
+          <span className={styles.arrow}>
+            <ArrowIcon />
+          </span>
         </a>
+
       </nav>
 
+      {/* Footer */}
       <footer className={styles.footer}>
         <span>BE CHEF</span>
+
         <i aria-hidden="true" />
-        <span>CUISINE · PASSION · PARTAGE</span>
+
+        <span>
+          CUISINE · PASSION · PARTAGE
+        </span>
       </footer>
+
     </main>
   );
 }
