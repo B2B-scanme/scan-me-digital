@@ -128,7 +128,7 @@ export default function BeChefPage() {
       {/* Header */}
       <header className={styles.header}>
         <p className={styles.location}>
-          MARRAKECH · MAROC
+          Kenitra · MAROC
         </p>
 
         <p className={styles.restaurant}>
