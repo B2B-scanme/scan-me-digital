@@ -24,6 +24,9 @@ const mapsUrl =
 // Replace this with the direct Google review link when available.
 const googleReviewsUrl = mapsUrl;
 
+// Digital Menu
+const menuUrl = "https://be-chef.vercel.app/";
+
 // WhatsApp
 const whatsappUrl =
   "https://api.whatsapp.com/send/?phone=212670239965";
@@ -44,12 +47,12 @@ function InstagramIcon() {
   );
 }
 
-// Location Icon
-function LocationIcon() {
+// Menu Icon
+function MenuIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M20 10c0 5.3-8 11-8 11S4 15.3 4 10a8 8 0 1 1 16 0Z" />
-      <circle cx="12" cy="10" r="2.7" />
+      <path d="M5 4.5h11.5A2.5 2.5 0 0 1 19 7v12.5H7.5A2.5 2.5 0 0 1 5 17V4.5Z" />
+      <path d="M7.5 16.5H19M8.5 8h7M8.5 11h7" />
     </svg>
   );
 }
@@ -180,7 +183,7 @@ export default function BeChefPage() {
 
           <span className={styles.actionCopy}>
             <small>PARTAGEZ VOTRE EXPÉRIENCE</small>
-            Avis Google
+            Avis Google &amp; Location
           </span>
 
           <span className={styles.arrow}>
@@ -208,19 +211,19 @@ export default function BeChefPage() {
           </span>
         </a>
 
-        {/* Google Maps */}
+        {/* Digital Menu */}
         <a
-          href={mapsUrl}
+          href={menuUrl}
           target="_blank"
           rel="noopener noreferrer"
         >
           <span className={styles.actionIcon}>
-            <LocationIcon />
+            <MenuIcon />
           </span>
 
           <span className={styles.actionCopy}>
-            <small>RETROUVEZ-NOUS</small>
-            Itinéraire
+            <small>DÉCOUVREZ NOTRE CARTE</small>
+            Menu
           </span>
 
           <span className={styles.arrow}>
